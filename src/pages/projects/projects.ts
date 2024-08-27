@@ -1,9 +1,9 @@
-import { getRepositoryDetails } from "../../utils";
+import { getRepositoryDetails } from '../../utils';
 
 export interface Project {
   name: string;
   demoLink: string;
-  tags?: string[],
+  tags?: string[];
   description?: string;
   postLink?: string;
   demoLinkRel?: string;
@@ -12,8 +12,8 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    name: 'Devaradise.com',
-    description: 'A blog that sharing web development resources and tutorials',
+    name: 'Fourpoint',
+    description: 'D2l Clone',
     demoLink: 'https://devaradise.com',
     tags: ['Blog']
   },
@@ -62,4 +62,4 @@ export const projects: Project[] = [
     demoLink: 'https://organization-tree-2a446.web.app/',
     tags: ['Hobby']
   }
-]
+];
