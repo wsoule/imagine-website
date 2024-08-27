@@ -15,7 +15,7 @@ export const getStaticPaths = async () => {
   console.log(
     'flatten = ',
     combined
-      .map((post) => post.data?.tags ?? post.tags)
+      .map((post) => post.data?.tags ?? post?.tags)
       .flat()
       .filter((tag) => !!tag)
   );
