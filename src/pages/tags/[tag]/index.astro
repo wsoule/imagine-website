@@ -5,24 +5,29 @@ import BaseLayout from '@src/layouts/BaseLayout.astro';
 import { slugify, unslugify } from '@src/utils';
 import PostsByYear from '@src/components/PostsByYear.astro';
 import { projects } from '@src/pages/projects/projects';
+import type { Project } from '@src/pages/projects/projects';
 import ProjectList from '@src/components/ProjectList.astro';
 
 type BlogPost = CollectionEntry<'blog'>;
 export const getStaticPaths = async () => {
   const allPosts: BlogPost[] = await getCollection('blog');
   const allProjects = projects;
-  const combined = [...allPosts, ...allProjects];
-  console.log(
-    'flatten = ',
-    combined
-      .map((post) => post.data?.tags ?? post?.tags)
-      .flat()
-      .filter((tag) => !!tag)
-  );
+  const combined: (BlogPost | Project)[] = [...allPosts, ...allProjects];
   return [
     ...new Set(
       combined
-        .map((post) => post.data?.tags ?? post.tags)
+        .map((post) => {
+          // if (post.data?.tags) {
+          //   console.log('data tags = ', post.data?.tags);
+          // } else if () {
+          //   console.log('tags = ', post.tags);
+          // }
+          const tags = (post as Project)?.tags || post?.data?.tags;
+          if (tags) {
+            return tags;
+          }
+          return [];
+        })
         .flat()
         .filter((tag) => !!tag)
     )
