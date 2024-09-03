@@ -8,7 +8,10 @@ import partytown from "@astrojs/partytown";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://devolio.devaradise.com',
+  redirects: {
+  '/discord': 'https://discord.gg/imaginesoftware'
+  },
+  site: 'https://imaginesoftware.com',
   integrations: [mdx(), sitemap(), tailwind(), partytown()],
   markdown: {
     extendDefaultPlugins: true,
